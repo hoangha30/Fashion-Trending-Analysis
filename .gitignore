@@ -1,0 +1,40 @@
+.gitignore/
+
+# 💾 Session login file
+session-*
+
+# 📂 Thư mục chứa ảnh đã tải về từ Instagram
+*/__instaloader__
+*/instaloader_downloads/
+*/downloads/
+*/images/
+*/output/
+download_insta_imgs
+
+# 🐍 Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# 📦 Môi trường ảo (virtualenv)
+venv/
+env/
+.venv/
+.ENV/
+fta
+
+# 📝 Log files
+*.log
+
+# 💥 Thư mục tạm / backup
+*.bak
+*.tmp
+*.swp
+.DS_Store
+
+# VSCode / IDE
+.vscode/
+.idea/
+
+session-jreef__
