@@ -2,14 +2,11 @@
 
 # 💾 Session login file
 session-*
+session-jreef__
 
-# 📂 Thư mục chứa ảnh đã tải về từ Instagram
-*/__instaloader__
-*/instaloader_downloads/
-*/downloads/
-*/images/
-*/output/
-download_insta_imgs
+# 📂 Thư mục chứa ảnh đã tải về 
+insta_img
+pinterest_img
 
 # 🐍 Python cache
 __pycache__/
@@ -18,11 +15,7 @@ __pycache__/
 *.pyd
 
 # 📦 Môi trường ảo (virtualenv)
-venv/
-env/
-.venv/
-.ENV/
-fta
+tfa
 
 # 📝 Log files
 *.log
@@ -37,4 +30,3 @@ fta
 .vscode/
 .idea/
 
-session-jreef__

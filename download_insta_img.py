@@ -5,7 +5,7 @@ import requests
 # Đường dẫn đến file JSON đã crawl
 JSON_PATH = 'dataset_instagram-post-scraper_2025-04-15_12-12-00-598.json'
 # Thư mục lưu ảnh
-OUTPUT_DIR = 'download_insta_imgs'
+OUTPUT_DIR = 'insta_img'
 
 # Tạo thư mục gốc nếu chưa có
 os.makedirs(OUTPUT_DIR, exist_ok=True)

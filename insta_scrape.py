@@ -3,48 +3,55 @@ from datetime import datetime
 import time
 import os
 
-# Khởi tạo Instaloader và load session từ file
+# Initialize Instaloader
 L = instaloader.Instaloader()
-# L.load_session_from_file("session-jreef__")  # Đảm bảo file session-jreef__ nằm cùng thư mục với file script này
+
+# Login to Instagram
 L.login("jreef__", ".ha3072003tanh.")
+# L.load_session_from_file("jreef__", filename="session-jreef__")
 
-# Đặt thư mục chính nơi tất cả các ảnh sẽ được lưu
-main_folder = "Instagram_Dataset"
+# Set main directory where all images will be saved
+folder = "insta_hashtag_img"
 
-# Kiểm tra nếu thư mục chính chưa tồn tại thì tạo mới
-if not os.path.exists(main_folder):
-    os.makedirs(main_folder)
+# Create main folder if it doesn't exist
+if not os.path.exists(folder):
+    os.makedirs(folder)
 
-# Danh sách profile
-profiles = [
-    "_dancarroll", "vine.fits", "willnordin", "dujiin", "okayhong",
-    "leehk.k", "m.nchul", "nus_archive", "thvmxxs", "lhrim_",
-    "mint__jun", "imnathgriff", "zaraman", "sonxoo_", "moyen_official",
-    "hee_uun", "i.2.n.8", "wi__wi__wi", "actorleeminho", "imhyoseop",
-    "eunwo.o_c", "vaidoh.gun", "mr_h.w.a.n", "leneeden_", "jinwoobaee"
+# List of hashtags to download from
+hashtags = [
+    "mensstreetwear", "ootdmen", "cleanstyle", "cleanfit", "bestofstreetwear",
+    "streetstyle", "streetwearfashion", "streetwearstyle", "fashionman", "mensfashion",
+    "mensootd", "menoutfit", "menswearblogger", "menswear", "menswearfashion"
 ]
 
-# Giới hạn thời gian: chỉ lấy post đăng sau ngày 1/10/2024
+# Time limit: only get posts after October 1, 2024
 DATE_LIMIT = datetime(2024, 10, 1)
 
-# Duyệt qua từng profile
-for name in profiles:
+# Process each hashtag
+for tag_name in hashtags:
     try:
-        print(f"→ Đang tải từ {name} …")
-        profile = instaloader.Profile.from_username(L.context, name)
+        print(f"→ Downloading from #{tag_name} ...")
+        hashtag = instaloader.Hashtag.from_name(L.context, tag_name)
         count = 0
-        # Tạo thư mục riêng cho mỗi profile trong thư mục chính
-        profile_folder = os.path.join(main_folder, name)
-        if not os.path.exists(profile_folder):
-            os.makedirs(profile_folder)
         
-        for post in profile.get_posts():
+        # Create separate folder for each hashtag in the main folder
+        hashtag_folder = os.path.join(folder, tag_name)
+        if not os.path.exists(hashtag_folder):
+            os.makedirs(hashtag_folder)
+        
+        # Get posts with this hashtag
+        for post in hashtag.get_posts():
+            # Check if post is after our date limit
             if post.date_utc > DATE_LIMIT:
-                # Tải ảnh vào thư mục profile riêng biệt
-                L.download_post(post, target=profile_folder)
+                # Download post to the hashtag-specific folder
+                L.download_post(post, target=hashtag_folder)
                 count += 1
+                
+                # Optional: limit number of downloads per hashtag
+                if count >= 50:  # Adjust this number as needed
+                    break
         
-        print(f"✔️  Hoàn thành: {count} ảnh từ {name}\n")
-        time.sleep(15)  # Tạm dừng giữa các profile để tránh bị chặn
+        print(f"✔️  Completed: {count} images from #{tag_name}\n")
+        time.sleep(15)  # Pause between hashtags to avoid being blocked
     except Exception as e:
-        print(f"❌ Lỗi khi xử lý {name}: {e}")
+        print(f"❌ Error processing #{tag_name}: {e}")
