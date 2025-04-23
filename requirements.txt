@@ -2,3 +2,4 @@ instaloader
 playwright
 bs4
 requests
+pandas
