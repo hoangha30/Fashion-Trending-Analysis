@@ -1,5 +1,3 @@
-.gitignore/
-
 # 💾 Session login file
 session-*
 session-jreef__
@@ -30,3 +28,5 @@ tfa
 .vscode/
 .idea/
 
+merge.py
+m.py
