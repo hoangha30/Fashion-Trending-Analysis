@@ -1,5 +1,17 @@
-instaloader
-playwright
-bs4
-requests
-pandas
+# instaloader
+# playwright
+# bs4
+# requests
+# pandas
+torch
+open-clip-torch
+supervision
+autodistill
+ftfy
+regex
+tqdm
+Pillow
+numpy
+marqo
+sklearn
+onnxruntime
