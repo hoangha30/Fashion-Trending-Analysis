@@ -3,6 +3,7 @@ session-*
 session-jreef__
 
 # 📂 Thư mục chứa ảnh đã tải về 
+data/processed/
 insta_img
 pinterest_img
 
